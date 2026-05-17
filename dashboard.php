@@ -81,11 +81,6 @@ $row_jdw = mysqli_fetch_assoc($jdw);
                     </div>
                 </div>
             </div>
-
-            <div class="card mt-5 p-4 bg-white border-0 shadow-sm" style="border-radius: 10px;">
-                <h5 class="fw-bold">Status Sistem</h5>
-                <p class="mb-0 text-muted">Koneksi database dengan <strong>administrasi_kampus.sql</strong> berjalan stabil. Seluruh modul CRUD relasional berfungsi optimal.</p>
-            </div>
         </div>
     </div>
 </div>
