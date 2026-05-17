@@ -25,6 +25,7 @@ $query = mysqli_query($koneksi, "SELECT krs.*,
     </style>
 </head>
 <body>
+    <a href="../dashboard.php" style="text-decoration: none; color: #555; font-weight: bold;">⬅ Kembali ke Dashboard</a>
     <h2>Kartu Rencana Studi (KRS) Mahasiswa</h2>
     <a href="tambah.php" style="text-decoration: none; background: #2196F3; color: white; padding: 8px 15px; border-radius: 5px;">[+] Tambah Kontrak KRS</a>
 
