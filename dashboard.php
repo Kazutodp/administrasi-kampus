@@ -46,6 +46,9 @@ $row_jdw = mysqli_fetch_assoc($jdw);
             <a href="Jadwal/index.php">📅 Jadwal Perkuliahan</a>
             <a href="KRS/index.php">📝 Kontrak KRS</a>
             <a href="Nilai/index.php">📊 Nilai Akademik</a>
+            <a href="logout.php" class="btn btn-danger w-100 mt-4 fw-bold" onclick="return confirm('Yakin ingin keluar dari sistem?')">
+    🚪 Keluar (Logout)
+</a>
         </div>
 
         <div class="col-md-10 p-5">
