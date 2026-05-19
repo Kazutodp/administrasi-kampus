@@ -42,7 +42,7 @@ $query = mysqli_query($koneksi, "SELECT jadwal.*,
             <td><?= $row['Nama_Matakuliah']; ?> (<?= $row['Kode_Matakuliah']; ?>)</td>
             <td><?= $row['Nama_Dosen']; ?></td>
             <td><?= $row['Hari']; ?></td>
-            <td><?= substr($row['Jam'], 0, 5); ?> WITA</td>
+            <td><?= $row['Jam']; ?> WITA</td>
             <td><?= $row['Ruangan']; ?></td> <td class="no-border" style="white-space: nowrap;"> 
                 <a href="tambah.php?id=<?= $row['Id_Jadwal']; ?>" style="text-decoration: none; color: blue;">Edit</a> | 
                 <a href="hapus.php?id=<?= $row['Id_Jadwal']; ?>" style="text-decoration: none; color: red;" onclick="return confirm('Yakin mau hapus jadwal ini?')">Hapus</a>
