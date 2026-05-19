@@ -19,7 +19,7 @@ if (isset($_POST['proses'])) {
     }
 
     if (mysqli_query($koneksi, $query)) {
-        echo "<script>alert('$pesan'); window.location='index.php';</script>";
+        echo "<script>alert('$pesan'); window.location='Tampilan.php';</script>";
     } else {
         echo "Error: " . mysqli_error($koneksi);
     }
