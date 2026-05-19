@@ -2,7 +2,7 @@
 include '../koneksi.php';
 
 $id_edit = isset($_GET['id']) ? $_GET['id'] : '';
-$data = ['Id_Jadwal' => '', 'Kode_Matakuliah' => '', 'NIDN_Pengampu' => '', 'Hari' => '', 'Jam' => '', 'Ruang' => ''];
+$data = ['Id_Jadwal' => '', 'Kode_Matakuliah' => '', 'NIDN_Pengampu' => '', 'Hari' => '', 'Jam' => '', 'Ruangan' => ''];
 
 $v_jam_masuk = "";
 $v_jam_keluar = "";
