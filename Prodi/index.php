@@ -158,7 +158,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM prodi");
                     <tr>
                         <th>ID Prodi</th>
                         <th>Nama Program Studi</th>
-                        <th class="action-col">Aksi</th>
+                        <th>Fakultas</th> <th class="action-col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -166,6 +166,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM prodi");
                     <tr>
                         <td class="id-col"><?= $row['Id_Prodi']; ?></td>
                         <td style="font-weight: 500; color: #0f172a;"><?= $row['Nama_Prodi']; ?></td>
+                        <td style="color: #475569;"><?= $row['Fakultas']; ?></td>
                         <td class="action-col" style="white-space: nowrap;"> 
                             <a href="tambah.php?id=<?= $row['Id_Prodi']; ?>" class="action-link link-edit">Edit</a>
                             <span class="divider"></span>

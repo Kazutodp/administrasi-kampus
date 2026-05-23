@@ -127,7 +127,7 @@ if (isset($_GET['id'])) {
                 box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4); 
                 transform: translateY(-1px); 
             }
-            
+
             .btn-cancel { 
                 flex: 1; 
                 text-decoration: none; 
@@ -154,7 +154,7 @@ if (isset($_GET['id'])) {
             <h2><?= $is_edit ? 'Edit Data' : 'Tambah'; ?> Prodi</h2>
             <div class="subtitle"><?= $is_edit ? 'Perbarui informasi detail program studi' : 'Masukkan detail program studi baru secara lengkap'; ?></div>
             
-            <form action="<?= $is_edit ? 'proses_tambah.php' : 'tambah.php'; ?>" method="POST">
+            <form action="proses_tambah.php" method="POST">
                 
                 <div class="form-group">
                     <label for="id_prodi">ID Prodi</label>
