@@ -169,9 +169,8 @@
                     <h2 class="fw-bold text-dark" style="font-size: 28px;">Selamat Datang di Portal Utama</h2>
                     <p class="text-muted">Kelola data operasional perkuliahan, data mahasiswa, dan verifikasi akademik secara terpusat.</p>
                 </div>
-                
 
-                <div class="row g-4">
+                <div class="row g-4 mb-4">
                     <div class="col-md-3">
                         <div class="card-stat border-mhs">
                             <h5>Total Mahasiswa</h5>
@@ -201,6 +200,21 @@
                     </div>
                 </div>
 
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="card-stat" style="border-bottom: 4px solid #f59e0b;">
+                            <h5>Program Studi</h5>
+                            <h2>
+                                <?php 
+                                    $q_prd = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM prodi");
+                                    $row_prd = mysqli_fetch_assoc($q_prd);
+                                    echo $row_prd['total'];
+                                ?> 
+                                <span style="font-size: 16px; color: #64748b; font-weight: normal;">Prodi</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
