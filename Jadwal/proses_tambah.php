@@ -2,17 +2,15 @@
 include '../koneksi.php';
 
 if (isset($_POST['proses'])) {
-    $id_jadwal       = $_POST['id_jadwal'];
-    $kode_matakuliah = $_POST['kode_matakuliah'];
-    $nidn_pengampu   = $_POST['nidn_pengampu'];
-    $hari            = $_POST['hari'];
-    $ruang           = $_POST['ruang'];
+    $id_jadwal       = strtoupper(mysqli_real_escape_string($koneksi, trim($_POST['id_jadwal'])));
+    $kode_matakuliah = mysqli_real_escape_string($koneksi, $_POST['kode_matakuliah']);
+    $nidn_pengampu   = mysqli_real_escape_string($koneksi, $_POST['nidn_pengampu']);
+    $hari            = mysqli_real_escape_string($koneksi, $_POST['hari']);
+    $ruang           = mysqli_real_escape_string($koneksi, trim($_POST['ruang']));
 
     $jam_masuk  = $_POST['jam_masuk'];
     $jam_keluar = $_POST['jam_keluar'];
-
-    $jam = $jam_masuk . " - " . $jam_keluar;
-    // -------------------------
+    $jam        = $jam_masuk . " - " . $jam_keluar;
 
     $cek = mysqli_query($koneksi, "SELECT * FROM jadwal WHERE Id_Jadwal = '$id_jadwal'");
     
@@ -26,7 +24,8 @@ if (isset($_POST['proses'])) {
                 WHERE Id_Jadwal='$id_jadwal'";
         $pesan = "Jadwal Kuliah Berhasil Diperbarui!";
     } else {
-        $query = "INSERT INTO jadwal (Id_Jadwal, Kode_Matakuliah, NIDN_Pengampu, Hari, Jam, Ruangan) VALUES ('$id_jadwal', '$kode_matakuliah', '$nidn_pengampu', '$hari', '$jam', '$ruang')";
+        $query = "INSERT INTO jadwal (Id_Jadwal, Kode_Matakuliah, NIDN_Pengampu, Hari, Jam, Ruangan) 
+                VALUES ('$id_jadwal', '$kode_matakuliah', '$nidn_pengampu', '$hari', '$jam', '$ruang')";
         $pesan = "Jadwal Kuliah Berhasil Disimpan!";
     }
 
