@@ -2,6 +2,7 @@
 include '../koneksi.php';
 
 $nidn_edit = isset($_GET['nidn']) ? $_GET['nidn'] : '';
+
 $data = ['NIDN' => '', 'Nama_Dosen' => '', 'Jurusan' => '', 'Jenis_Kelamin' => '', 'Email' => ''];
 
 if ($nidn_edit != '') {
@@ -9,12 +10,13 @@ if ($nidn_edit != '') {
     $data = mysqli_fetch_array($query);
     $judul = "Edit Data Dosen";
     $tombol = "Update Dosen";
-    $readonly = "readonly"; 
+    $readonly = "readonly";
 } else {
     $judul = "Tambah Data Dosen";
     $tombol = "Simpan Dosen";
     $readonly = "";
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -172,7 +174,6 @@ if ($nidn_edit != '') {
             }
         </style>
     </head>
-    
     <body>
         <div class="form-wrapper">
             <a href="index.php" class="btn-back">⬅ Kembali ke Daftar Dosen</a>
@@ -197,10 +198,14 @@ if ($nidn_edit != '') {
                         <label for="jurusan">Program Studi (Prodi)</label>
                         <select name="jurusan" id="jurusan" class="form-control" required>
                             <option value="">-- Pilih Program Studi --</option>
-                            <option value="S1 Teknik Informatika" <?= ($data['Jurusan'] != '' && $data['Jurusan'] == 'S1 Teknik Informatika') ? 'selected' : ''; ?>>S1 Teknik Informatika</option>
-                            <option value="S1 Sistem Informasi" <?= ($data['Jurusan'] != '' && $data['Jurusan'] == 'S1 Sistem Informasi') ? 'selected' : ''; ?>>S1 Sistem Informasi</option>
-                            <option value="S1 Sistem Komputer" <?= ($data['Jurusan'] != '' && $data['Jurusan'] == 'S1 Sistem Komputer') ? 'selected' : ''; ?>>S1 Sistem Komputer</option>
-                            <option value="D3 Manajemen Informatika" <?= ($data['Jurusan'] != '' && $data['Jurusan'] == 'D3 Manajemen Informatika') ? 'selected' : ''; ?>>D3 Manajemen Informatika</option>
+                            <?php
+                            $q_prodi = mysqli_query($koneksi, "SELECT * FROM prodi");
+                            while($p = mysqli_fetch_array($q_prodi)) {
+                                // Kita pilih berdasarkan Id_Prodi, bukan nama prodi
+                                $selected = ($data['Jurusan'] == $p['Id_Prodi']) ? 'selected' : '';
+                                echo "<option value='".$p['Id_Prodi']."' $selected>".$p['Nama_Prodi']."</option>";
+                            }
+                            ?>
                         </select>
                     </div>
 

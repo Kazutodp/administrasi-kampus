@@ -1,6 +1,8 @@
 <?php
 include '../koneksi.php';
-$query = mysqli_query($koneksi, "SELECT * FROM dosen");
+$query = mysqli_query($koneksi, "SELECT dosen.*, prodi.Nama_Prodi 
+                                FROM dosen 
+                                JOIN prodi ON dosen.Jurusan = prodi.id_prodi");
 ?>
 
 <!DOCTYPE html>
@@ -183,7 +185,9 @@ $query = mysqli_query($koneksi, "SELECT * FROM dosen");
                             <td class="no-col"><?= $no++; ?>.</td>
                             <td class="nidn-col"><?= $row['NIDN']; ?></td>
                             <td class="name-col"><?= $row['Nama_Dosen']; ?></td>
-                            <td class="prodi-col"><?= $row['Jurusan']; ?></td>
+                            
+                            <td class="prodi-col"><?= $row['Nama_Prodi']; ?></td>
+                            
                             <td class="jk-col">
                                 <span class="jk-badge <?= $jk_class; ?>"><?= $jk_text; ?></span>
                             </td>
@@ -192,9 +196,9 @@ $query = mysqli_query($koneksi, "SELECT * FROM dosen");
                             </td>
                             
                             <td class="action-col" style="white-space: nowrap;"> 
-                                <a href="tambah.php?nidn=<?= $row['NIDN']; ?>" class="action-link link-edit">Edit</a>
+                                <a href="tambah.php?NIDN=<?= $row['NIDN']; ?>" class="action-link link-edit">Edit</a>
                                 <span class="divider">|</span>
-                                <a href="hapus.php?nidn=<?= $row['NIDN']; ?>" class="action-link link-delete" onclick="return confirm('Yakin ingin menghapus data dosen ini?')">Hapus</a>
+                                <a href="hapus.php?NIDN=<?= $row['NIDN']; ?>" class="action-link link-delete" onclick="return confirm('Yakin ingin menghapus data dosen ini?')">Hapus</a>
                             </td>
                         </tr>
                         <?php } ?>
