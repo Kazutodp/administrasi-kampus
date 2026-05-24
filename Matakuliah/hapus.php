@@ -2,7 +2,7 @@
 include '../koneksi.php';
 
 if (isset($_GET['kode'])) {
-    $kode_mk = $_GET['kode'];
+    $kode_mk = mysqli_real_escape_string($koneksi, $_GET['kode']);
     $hapus = mysqli_query($koneksi, "DELETE FROM matakuliah WHERE Kode_Matakuliah = '$kode_mk'");
 
     if ($hapus) {
@@ -10,5 +10,8 @@ if (isset($_GET['kode'])) {
     } else {
         echo "Gagal menghapus: " . mysqli_error($koneksi);
     }
+} else {
+    header("Location: index.php");
+    exit;
 }
 ?>
