@@ -2,17 +2,25 @@
 include '../koneksi.php';
 
 if (isset($_POST['proses'])) {
-    $nidn   = $_POST['nidn'];
-    $nama   = $_POST['nama_dosen'];
-    $email  = $_POST['email'];
+    $nidn          = mysqli_real_escape_string($koneksi, $_POST['nidn']);
+    $nama          = mysqli_real_escape_string($koneksi, $_POST['nama_dosen']);
+    $jurusan       = mysqli_real_escape_string($koneksi, $_POST['jurusan']);
+    $jenis_kelamin = mysqli_real_escape_string($koneksi, $_POST['jenis_kelamin']); 
+    $email         = mysqli_real_escape_string($koneksi, $_POST['email']);
 
     $cek = mysqli_query($koneksi, "SELECT * FROM dosen WHERE NIDN = '$nidn'");
     
     if (mysqli_num_rows($cek) > 0) {
-        $query = "UPDATE dosen SET Nama_Dosen='$nama', Email='$email' WHERE NIDN='$nidn'";
+        $query = "UPDATE dosen SET 
+                    Nama_Dosen='$nama', 
+                    Jurusan='$jurusan', 
+                    Jenis_Kelamin='$jenis_kelamin', 
+                    Email='$email' 
+                WHERE NIDN='$nidn'";
         $pesan = "Data Dosen Berhasil Diperbarui!";
     } else {
-        $query = "INSERT INTO dosen (NIDN, Nama_Dosen, Email) VALUES ('$nidn', '$nama', '$email')";
+        $query = "INSERT INTO dosen (NIDN, Nama_Dosen, Jurusan, Jenis_Kelamin, Email) 
+                VALUES ('$nidn', '$nama', '$jurusan', '$jenis_kelamin', '$email')";
         $pesan = "Data Dosen Berhasil Disimpan!";
     }
 
