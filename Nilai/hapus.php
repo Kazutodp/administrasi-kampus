@@ -8,7 +8,10 @@ if (isset($_GET['id'])) {
     if ($hapus) {
         echo "<script>alert('Data Nilai Berhasil Dihapus!'); window.location='index.php';</script>";
     } else {
-        echo "Gagal menghapus data nilai: " . mysqli_error($koneksi);
+        echo "<script>alert('Gagal menghapus data nilai: " . mysqli_error($koneksi) . "'); window.location='index.php';</script>";
     }
+} else {
+    header("Location: index.php");
+    exit;
 }
 ?>
