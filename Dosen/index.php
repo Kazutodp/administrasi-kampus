@@ -1,8 +1,9 @@
 <?php
 include '../koneksi.php';
-$query = mysqli_query($koneksi, "SELECT dosen.*, prodi.Nama_Prodi 
-                                FROM dosen 
-                                JOIN prodi ON dosen.Jurusan = prodi.id_prodi");
+$sql = "SELECT dosen.*, prodi.Nama_Prodi 
+        FROM dosen 
+        LEFT JOIN prodi ON dosen.Id_Prodi = prodi.Id_Prodi";
+$query = mysqli_query($koneksi, $sql); 
 ?>
 
 <!DOCTYPE html>

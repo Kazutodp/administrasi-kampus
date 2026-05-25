@@ -4,7 +4,7 @@ include '../koneksi.php';
 if (isset($_POST['proses'])) {
     $nidn          = mysqli_real_escape_string($koneksi, $_POST['nidn']);
     $nama          = mysqli_real_escape_string($koneksi, $_POST['nama_dosen']);
-    $jurusan       = mysqli_real_escape_string($koneksi, $_POST['jurusan']);
+    $jurusan       = mysqli_real_escape_string($koneksi, $_POST['jurusan']); // Ini adalah Id_Prodi
     $jenis_kelamin = mysqli_real_escape_string($koneksi, $_POST['jenis_kelamin']); 
     $email         = mysqli_real_escape_string($koneksi, $_POST['email']);
 
@@ -13,13 +13,13 @@ if (isset($_POST['proses'])) {
     if (mysqli_num_rows($cek) > 0) {
         $query = "UPDATE dosen SET 
                     Nama_Dosen='$nama', 
-                    Jurusan='$jurusan', 
+                    Id_Prodi='$jurusan', 
                     Jenis_Kelamin='$jenis_kelamin', 
                     Email='$email' 
                 WHERE NIDN='$nidn'";
         $pesan = "Data Dosen Berhasil Diperbarui!";
     } else {
-        $query = "INSERT INTO dosen (NIDN, Nama_Dosen, Jurusan, Jenis_Kelamin, Email) 
+        $query = "INSERT INTO dosen (NIDN, Nama_Dosen, Id_Prodi, Jenis_Kelamin, Email) 
                 VALUES ('$nidn', '$nama', '$jurusan', '$jenis_kelamin', '$email')";
         $pesan = "Data Dosen Berhasil Disimpan!";
     }

@@ -1,7 +1,7 @@
 <?php
 include '../koneksi.php';
 
-$nidn_edit = isset($_GET['nidn']) ? $_GET['nidn'] : '';
+$nidn_edit = isset($_GET['NIDN']) ? $_GET['NIDN'] : '';
 
 $data = ['NIDN' => '', 'Nama_Dosen' => '', 'Jurusan' => '', 'Jenis_Kelamin' => '', 'Email' => ''];
 
@@ -186,7 +186,8 @@ if ($nidn_edit != '') {
                     
                     <div class="form-group">
                         <label for="nidn">NIDN Dosen</label>
-                        <input type="text" name="nidn" id="nidn" class="form-control" placeholder="Contoh: 0423098701" value="<?= $data['NIDN']; ?>" <?= $readonly; ?> required>
+                        <input type="hidden" name="nidn" value="<?= $data['NIDN']; ?>">
+                        <input type="text" id="nidn_display" class="form-control" value="<?= $data['NIDN']; ?>" readonly>
                     </div>
 
                     <div class="form-group">
@@ -201,8 +202,7 @@ if ($nidn_edit != '') {
                             <?php
                             $q_prodi = mysqli_query($koneksi, "SELECT * FROM prodi");
                             while($p = mysqli_fetch_array($q_prodi)) {
-                                // Kita pilih berdasarkan Id_Prodi, bukan nama prodi
-                                $selected = ($data['Jurusan'] == $p['Id_Prodi']) ? 'selected' : '';
+                                $selected = ($data['Id_Prodi'] == $p['Id_Prodi']) ? 'selected' : '';
                                 echo "<option value='".$p['Id_Prodi']."' $selected>".$p['Nama_Prodi']."</option>";
                             }
                             ?>
