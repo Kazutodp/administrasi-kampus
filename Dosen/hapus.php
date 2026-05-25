@@ -1,8 +1,7 @@
 <?php
 include '../koneksi.php';
-
-if (isset($_GET['nidn'])) {
-    $nidn = mysqli_real_escape_string($koneksi, $_GET['nidn']);
+if (isset($_GET['NIDN'])) {
+    $nidn = mysqli_real_escape_string($koneksi, $_GET['NIDN']);
     
     $hapus = mysqli_query($koneksi, "DELETE FROM dosen WHERE NIDN = '$nidn'");
 

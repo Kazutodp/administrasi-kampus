@@ -186,8 +186,11 @@ if ($nidn_edit != '') {
                     
                     <div class="form-group">
                         <label for="nidn">NIDN Dosen</label>
-                        <input type="hidden" name="nidn" value="<?= $data['NIDN']; ?>">
-                        <input type="text" id="nidn_display" class="form-control" value="<?= $data['NIDN']; ?>" readonly>
+                        <?php 
+                            $readonly_attr = ($nidn_edit != '') ? 'readonly' : ''; 
+                        ?>
+                        <input type="text" name="nidn" id="nidn" class="form-control" 
+                            value="<?= $data['NIDN']; ?>" <?= $readonly_attr; ?> required>
                     </div>
 
                     <div class="form-group">
