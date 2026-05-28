@@ -87,7 +87,7 @@ $query = mysqli_query($koneksi, "SELECT
                         </td>
                         <td style="color: #64748b; font-weight: 600;">🗓️ <?= $row['Semester_Aktif']; ?></td>
                         <td class="text-center">
-                            <a href="detail_nilai.php?nim=<?= $row['NIM']; ?>" class="btn-view">🔍 Lihat Detail Nilai</a>
+                            <a href="detail_nilai.php?nim=<?= $row['NIM']; ?>" class="btn-view">🔍 Lihat Detail</a>
                         </td>
                     </tr>
                     <?php } } ?>
