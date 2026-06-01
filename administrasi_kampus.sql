@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2026 at 06:42 PM
+-- Generation Time: Jun 01, 2026 at 06:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `dosen` (
   `NIDN` varchar(15) NOT NULL,
   `Nama_Dosen` varchar(30) NOT NULL,
-  `Jurusan` varchar(50) NOT NULL,
+  `Id_Prodi` varchar(50) NOT NULL,
   `Jenis_Kelamin` varchar(20) NOT NULL,
   `Email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -39,9 +39,13 @@ CREATE TABLE `dosen` (
 -- Dumping data for table `dosen`
 --
 
-INSERT INTO `dosen` (`NIDN`, `Nama_Dosen`, `Jurusan`, `Jenis_Kelamin`, `Email`) VALUES
+INSERT INTO `dosen` (`NIDN`, `Nama_Dosen`, `Id_Prodi`, `Jenis_Kelamin`, `Email`) VALUES
+('0015098804', 'Dr. Maria Ulfa, M.Pd.', '23201', 'Perempuan', 'maria.ulfa@univ.ac.id'),
+('0020117512', 'Bambang Sudarmono, S.T., M.Sc.', '22201', 'Laki-laki', 'bambang.s@kampus.ac.id'),
+('0025087502', 'Siti Aminah, S.E., M.Si.', '74201', 'Perempuan', 's.aminah@univ.ac.id'),
 ('0812048501', 'Dr. Eng. I Made Sukarta, M.T.', '55201', 'Laki-laki', 'made.sukarta@ac.id'),
-('0823088802', 'Rina Wijayanti, M.Kom.', '55301', 'Perempuan', 'rina.wijayanti@ac.id');
+('0823088802', 'Rina Wijayanti, M.Kom.', '55301', 'Perempuan', 'rina.wijayanti@ac.id'),
+('0830108302', 'Rizky Ramadhan, M.B.A.', '61201', 'Laki-laki', 'rizky.ramadhan@ac.id');
 
 -- --------------------------------------------------------
 
@@ -58,6 +62,14 @@ CREATE TABLE `jadwal` (
   `Ruangan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `jadwal`
+--
+
+INSERT INTO `jadwal` (`Id_Jadwal`, `Kode_Matakuliah`, `NIDN_Pengampu`, `Hari`, `Jam`, `Ruangan`) VALUES
+('02121', 'INF406', '0812048501', 'Rabu', '09:20 - 15:20', 'lab 1'),
+('73924', 'MK103', '0812048501', 'Jumat', '09:20 - 11:20', 'Ruang 24');
+
 -- --------------------------------------------------------
 
 --
@@ -70,6 +82,15 @@ CREATE TABLE `krs` (
   `Id_Jadwal` varchar(15) NOT NULL,
   `Tahun_Akademik` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `krs`
+--
+
+INSERT INTO `krs` (`Id_KRS`, `NIM`, `Id_Jadwal`, `Tahun_Akademik`) VALUES
+('KRS-6048702', '6120524007', '02121', '2025/2026 Ganjil'),
+('KRS-8948702', '6120524007', '73924', '2025/2026 Ganjil'),
+('KRS-9641267', '5520124001', '02121', '2025/2026 Ganjil');
 
 -- --------------------------------------------------------
 
@@ -116,9 +137,13 @@ CREATE TABLE `matakuliah` (
 --
 
 INSERT INTO `matakuliah` (`Kode_Matakuliah`, `Nama_Matakuliah`, `SKS`, `semester`, `Sifat_Matakuliah`, `Jenis_Matakuliah`) VALUES
+('IF101', 'Matematika Diskrit', 3, 1, 'Wajib', 'Teori'),
+('IF102', 'Algoritma & Pemrograman', 4, 1, 'Wajib', 'Teori & Praktikum'),
+('IF201', 'Struktur Data', 4, 2, 'Wajib', 'Teori & Praktikum'),
 ('INF406', 'Jaringan Komputer', 3, 4, 'Wajib', 'Teori & Praktikum'),
 ('INF612', 'Keamanan Jaringan & Penetratio', 3, 7, 'Pilihan', 'Teori & Praktikum'),
-('INF615', 'Pengembangan Aplikasi Mobile', 3, 6, 'Pilihan', 'Praktikum');
+('INF615', 'Pengembangan Aplikasi Mobile', 3, 6, 'Pilihan', 'Praktikum'),
+('MK103', 'Pancasila & Kewarganegaraan', 2, 1, 'Wajib', 'Teori');
 
 -- --------------------------------------------------------
 
@@ -127,11 +152,19 @@ INSERT INTO `matakuliah` (`Kode_Matakuliah`, `Nama_Matakuliah`, `SKS`, `semester
 --
 
 CREATE TABLE `nilai` (
-  `Id_Nilai` varchar(15) NOT NULL,
+  `Id_Nilai` int(11) NOT NULL,
   `Id_KRS` varchar(15) NOT NULL,
   `Nilai_angka` decimal(10,0) NOT NULL,
   `Nilai_Huruf` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`Id_Nilai`, `Id_KRS`, `Nilai_angka`, `Nilai_Huruf`) VALUES
+(1, 'KRS-6048702', 86, 'A'),
+(2, 'KRS-9641267', 60, 'C');
 
 -- --------------------------------------------------------
 
@@ -186,7 +219,7 @@ INSERT INTO `users` (`Id_User`, `Username`, `Password`) VALUES
 --
 ALTER TABLE `dosen`
   ADD PRIMARY KEY (`NIDN`),
-  ADD KEY `Jurusan` (`Jurusan`);
+  ADD KEY `Jurusan` (`Id_Prodi`);
 
 --
 -- Indexes for table `jadwal`
@@ -236,6 +269,16 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`Id_User`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `nilai`
+--
+ALTER TABLE `nilai`
+  MODIFY `Id_Nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -243,7 +286,7 @@ ALTER TABLE `users`
 -- Constraints for table `dosen`
 --
 ALTER TABLE `dosen`
-  ADD CONSTRAINT `dosen_ibfk_1` FOREIGN KEY (`Jurusan`) REFERENCES `prodi` (`Id_Prodi`);
+  ADD CONSTRAINT `dosen_ibfk_1` FOREIGN KEY (`Id_Prodi`) REFERENCES `prodi` (`Id_Prodi`);
 
 --
 -- Constraints for table `jadwal`
