@@ -21,7 +21,7 @@ if (isset($_POST['proses'])) {
     } else {
         $query = "INSERT INTO dosen (NIDN, Nama_Dosen, Id_Prodi, Jenis_Kelamin, Email) 
                 VALUES ('$nidn', '$nama', '$jurusan', '$jenis_kelamin', '$email')";
-        $pesan = "Data Dosen Berhasil Disimpan!";
+        $pesan = "Data Dosen Berhasil Ditambahkan!";
     }
 
     if (mysqli_query($koneksi, $query)) {

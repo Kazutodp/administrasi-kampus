@@ -28,7 +28,7 @@ if (isset($_POST['proses'])) {
     } else {
         $query = "INSERT INTO matakuliah (Kode_Matakuliah, Nama_Matakuliah, SKS, semester, Sifat_Matakuliah, Jenis_Matakuliah) 
                 VALUES ('$kode_mk', '$nama_mk', '$sks', '$semester', '$sifat_mk', '$jenis_mk')";
-        $pesan = "Mata Kuliah Berhasil Disimpan!";
+        $pesan = "Mata Kuliah Berhasil Ditambahkan!";
     }
 
     if (mysqli_query($koneksi, $query)) {
